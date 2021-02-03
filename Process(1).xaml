@@ -1,0 +1,510 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="DeleteRow" mva:VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="DeleteRow_1"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:ui="http://schemas.uipath.com/workflow/activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>UiPath.Cryptography</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.Java.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.PDF</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="DeleteRow" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="sd:DataRow[]" Name="data_to_del" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DT1" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="PriceMinEX" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="PriceMaxEX" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DT2" />
+      <Variable x:TypeArguments="x:String" Name="WordDiscardEX" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DT3" />
+      <Variable x:TypeArguments="sd:DataTable" Name="DT4" />
+      <Variable x:TypeArguments="x:Int32" Name="i" />
+      <Variable x:TypeArguments="x:Double" Name="PriceDT1" />
+      <Variable x:TypeArguments="x:String" Name="LinkDT1" />
+      <Variable x:TypeArguments="x:Double" Name="PriceDT3" />
+      <Variable x:TypeArguments="x:String" Name="LinkDT3" />
+    </Flowchart.Variables>
+    <Flowchart.StartNode>
+      <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_14">
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_24">
+          <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" WorkbookPath="Book1.xlsx">
+            <ui:ExcelApplicationScope.Body>
+              <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                </ActivityAction.Argument>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_37">
+                  <ui:ExcelReadRange AddHeaders="True" DataTable="[DT1]" DisplayName="Read Range" sap2010:WorkflowViewState.IdRef="ExcelReadRange_5" SheetName="Weekly update">
+                    <ui:ExcelReadRange.Range>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </ui:ExcelReadRange.Range>
+                  </ui:ExcelReadRange>
+                  <ui:ExcelReadRange AddHeaders="True" DataTable="[DT2]" DisplayName="Read Range" sap2010:WorkflowViewState.IdRef="ExcelReadRange_6" SheetName="Setting">
+                    <ui:ExcelReadRange.Range>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </ui:ExcelReadRange.Range>
+                  </ui:ExcelReadRange>
+                  <ui:ExcelReadRange AddHeaders="True" DataTable="[DT3]" DisplayName="Read Range" sap2010:WorkflowViewState.IdRef="ExcelReadRange_7" SheetName="Sorted">
+                    <ui:ExcelReadRange.Range>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </ui:ExcelReadRange.Range>
+                  </ui:ExcelReadRange>
+                  <Sequence DisplayName="Remove row with empty data" sap2010:WorkflowViewState.IdRef="Sequence_46">
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_40">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="sd:DataRow[]">[data_to_del]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="sd:DataRow[]" xml:space="preserve">[DT1.Select("[Pubblicazione] is null or [Prezzo] is null or [Dove] is null  ")]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" DisplayName="For each" sap2010:WorkflowViewState.IdRef="ForEach`1_14" Values="[data_to_del]">
+                      <ui:ForEach.Body>
+                        <ActivityAction x:TypeArguments="sd:DataRow">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="item" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                            <ui:RemoveDataRow RowIndex="{x:Null}" DataTable="[DT1]" DisplayName="Remove data row" sap2010:WorkflowViewState.IdRef="RemoveDataRow_13" Row="[item]" />
+                          </Sequence>
+                        </ActivityAction>
+                      </ui:ForEach.Body>
+                    </ui:ForEach>
+                  </Sequence>
+                  <Sequence DisplayName="Remove row containing this word" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_41">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[WordDiscardEX]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[DT2.Rows(0)("Discard key word").ToString]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_42">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="sd:DataRow[]">[data_to_del]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="sd:DataRow[]">[DT1.Select("Convert([Title],System.String) like '%iphone%'")]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" DisplayName="For each" sap2010:WorkflowViewState.IdRef="ForEach`1_15" Values="[data_to_del]">
+                      <ui:ForEach.Body>
+                        <ActivityAction x:TypeArguments="sd:DataRow">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="item" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                            <ui:RemoveDataRow RowIndex="{x:Null}" DataTable="[DT1]" DisplayName="Remove data row" sap2010:WorkflowViewState.IdRef="RemoveDataRow_14" Row="[item]" />
+                          </Sequence>
+                        </ActivityAction>
+                      </ui:ForEach.Body>
+                    </ui:ForEach>
+                  </Sequence>
+                  <Sequence DisplayName="Price window selection" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_33">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="ui:GenericValue">[PriceMinEX]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="ui:GenericValue">[DT2.Rows(0)("Price min").ToString]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_34">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="ui:GenericValue">[PriceMaxEX]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="ui:GenericValue">[DT2.Rows(0)("Price max").ToString]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_35">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="sd:DataRow[]">[data_to_del]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="sd:DataRow[]">[DT1.Select("[Prezzo]&lt;'"+ PriceMinEX +"'or [Prezzo]&gt;'"+ PriceMaxEX +"'")]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" DisplayName="For each" sap2010:WorkflowViewState.IdRef="ForEach`1_10" Values="[data_to_del]">
+                      <ui:ForEach.Body>
+                        <ActivityAction x:TypeArguments="sd:DataRow">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="item" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                            <ui:RemoveDataRow RowIndex="{x:Null}" DataTable="[DT1]" DisplayName="Remove data row" sap2010:WorkflowViewState.IdRef="RemoveDataRow_9" Row="[item]" />
+                          </Sequence>
+                        </ActivityAction>
+                      </ui:ForEach.Body>
+                    </ui:ForEach>
+                  </Sequence>
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_45">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="sd:DataTable">[DT4]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="sd:DataTable">[DT3.Copy()]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[DT1]" DisplayName="For Each Row" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                    <ui:ForEachRow.Body>
+                      <ActivityAction x:TypeArguments="sd:DataRow">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="sd:DataRow" Name="rowDT1" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                          <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Link" DisplayName="Get Row Item" sap2010:WorkflowViewState.IdRef="GetRowItem_1" Row="[rowDT1]">
+                            <ui:GetRowItem.Value>
+                              <OutArgument x:TypeArguments="x:String">[LinkDT1]</OutArgument>
+                            </ui:GetRowItem.Value>
+                          </ui:GetRowItem>
+                          <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Prezzo" DisplayName="Get Row Item" sap2010:WorkflowViewState.IdRef="GetRowItem_5" Row="[rowDT1]">
+                            <ui:GetRowItem.Value>
+                              <OutArgument x:TypeArguments="x:Double">[PriceDT1]</OutArgument>
+                            </ui:GetRowItem.Value>
+                          </ui:GetRowItem>
+                          <ui:ForEachRow CurrentIndex="[i]" DataTable="[DT3]" DisplayName="For Each Row" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+                            <ui:ForEachRow.Body>
+                              <ActivityAction x:TypeArguments="sd:DataRow">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="rowDT3" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_49">
+                                  <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Link" DisplayName="Get Row Item" sap2010:WorkflowViewState.IdRef="GetRowItem_2" Row="[rowDT3]">
+                                    <ui:GetRowItem.Value>
+                                      <OutArgument x:TypeArguments="x:String">[LinkDT3]</OutArgument>
+                                    </ui:GetRowItem.Value>
+                                  </ui:GetRowItem>
+                                  <ui:GetRowItem Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Prezzo" DisplayName="Get Row Item" sap2010:WorkflowViewState.IdRef="GetRowItem_6" Row="[rowDT3]">
+                                    <ui:GetRowItem.Value>
+                                      <OutArgument x:TypeArguments="x:Double">[PriceDT3]</OutArgument>
+                                    </ui:GetRowItem.Value>
+                                  </ui:GetRowItem>
+                                  <If Condition="[LinkDT3 = LinkDT1]" sap2010:WorkflowViewState.IdRef="If_1">
+                                    <If.Then>
+                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_51">
+                                        <If Condition="[PriceDT1 &lt; PriceDT3]" sap2010:WorkflowViewState.IdRef="If_2">
+                                          <If.Then>
+                                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_54">
+                                              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_55">
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_50">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Object">[DT4.Rows(i).Item("Risk Dupplicate")]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Object">["Down"]</InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_52">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Object">[DT4.Rows(i).Item("Prezzo")]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Object">[PriceDT1]</InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                              </Sequence>
+                                            </Sequence>
+                                          </If.Then>
+                                          <If.Else>
+                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_51">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Object">[DT4.Rows(i).Item("Risk Dupplicate")]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Object">["Equal or Higher"]</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                          </If.Else>
+                                        </If>
+                                      </Sequence>
+                                    </If.Then>
+                                    <If.Else>
+                                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[rowDT1.ItemArray]" DataTable="[DT4]" DisplayName="Add Data Row" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                                    </If.Else>
+                                  </If>
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:ForEachRow.Body>
+                          </ui:ForEachRow>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEachRow.Body>
+                  </ui:ForEachRow>
+                  <ui:ExcelWriteRange AddHeaders="True" DataTable="[DT4]" DisplayName="Write Range" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="Sorted" StartingCell="A1" />
+                </Sequence>
+              </ActivityAction>
+            </ui:ExcelApplicationScope.Body>
+          </ui:ExcelApplicationScope>
+        </Sequence>
+      </FlowStep>
+    </Flowchart.StartNode>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <sads:DebugSymbol.Symbol>dy9DOlxVc2Vyc1xBa3NoYXlfWWFkYXZcRG93bmxvYWRzXFByb2Nlc3MoMSkueGFtbGhLA7sCDwIBAV0JtgIUAgECXgu1AiYCAQNepgFesgEDAYwBZBGyAhwCAQRlE2snAwGHAWwTcicDAYIBcxN5JwIBfXoTjwEeAgFwkAETrQEeAgFfrgET0wEeAgFK1AET2wEcAgFF3AETsAIjAgEKsQITsQLAAQIBBWVCZUkDAYoBaBloSAMBiQFloAFlrwEDAYgBbEJsSQMBhQFvGW9IAwGEAWygAWypAQMBgwFzQnNJAwGAAXYZdkgCAX9zoAFzqAECAX57FYIBHgIBeYMBFY4BIgIBcZEBFZgBHgIBbJkBFaABHgIBaKEBFawBIgIBYK8BFbYBHgIBW7cBFb4BHgIBV78BFcYBHgIBU8cBFdIBIgIBS9kBQtkBTgIBSNYBQ9YBSAIBRtwBRNwBSwIBQ+IBGa0CJAIBC7ECuQGxAr0BAgEJsQJDsQJKAgEHsQKjAbECqwECAQZ9RX1SAgF6gwGjAYMBsgECAXiJARuLASYCAXKWAUCWAWoCAW+TAUGTAVACAW2eAUSeAYIBAgFrmwFFmwFSAgFpoQGjAaEBsgECAWenARupASYCAWG0AUe0AWoCAV6xAUixAVQCAVy8AUe8AWoCAVq5AUi5AVQCAVjEAUTEAZMBAgFWwQFFwQFSAgFUxwGjAccBsgECAVLNARvPASYCAUzjARvnASsCAT3oARvsASsCATftARusAisCAQyKAR2KAbUBAgFzqAEdqAG1AQIBYs4BHc4BtAECAU3lAUflAVACAUHjAbMB4wG9AQIBP+MBXuMBZAIBPuoBR+oBUQIBO+gBtQHoAb8BAgE56AFe6AFmAgE47QE37QE8AgE17QFH7QFOAgEz8wEhqQIsAgENigGqAYoBsgECAXaKAU2KAVQCAXSoAaoBqAGyAQIBZagBTagBVAIBY84BqQHOAbEBAgFQzgFNzgFUAgFO9AEj+AEzAgEt+QEj/QEzAgEn/gEjqAIoAgEO9gFP9gFYAgEx9AG7AfQBxQECAS/0AWb0AWwCAS77AU/7AVkCASv5Ab0B+QHHAQIBKfkBZvkBbgIBKP4BMf4BRgIBD4ACJ6MCMgIBFqYCJ6YCxQECARKBAimiAi4CARemAnGmAngCARSmAlKmAmYCAROBAjeBAlECARiDAi2WAjgCAR6ZAi2gAjYCARuEAi+VAjoCAR+eAlieAmsCAR2bAlmbAn4CARyFAjGMAjoCASSNAjGUAjoCASCKAlyKAmQCASaHAl2HAoIBAgElkgJckgJmAgEijwJdjwJ5AgEh</sads:DebugSymbol.Symbol>
+  </Flowchart>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="ExcelReadRange_5" sap:VirtualizedContainerService.HintSize="904,59" />
+      <sap2010:ViewStateData Id="ExcelReadRange_6" sap:VirtualizedContainerService.HintSize="904,59" />
+      <sap2010:ViewStateData Id="ExcelReadRange_7" sap:VirtualizedContainerService.HintSize="904,59" />
+      <sap2010:ViewStateData Id="Assign_40" sap:VirtualizedContainerService.HintSize="287,60">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="RemoveDataRow_13" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_45" sap:VirtualizedContainerService.HintSize="222,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_14" sap:VirtualizedContainerService.HintSize="287,279">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_46" sap:VirtualizedContainerService.HintSize="904,503">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_41" sap:VirtualizedContainerService.HintSize="287,60" />
+      <sap2010:ViewStateData Id="Assign_42" sap:VirtualizedContainerService.HintSize="287,60">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="RemoveDataRow_14" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_47" sap:VirtualizedContainerService.HintSize="222,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_15" sap:VirtualizedContainerService.HintSize="287,279">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_48" sap:VirtualizedContainerService.HintSize="904,603">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_33" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_34" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_35" sap:VirtualizedContainerService.HintSize="242,60">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="RemoveDataRow_9" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_35" sap:VirtualizedContainerService.HintSize="222,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_10" sap:VirtualizedContainerService.HintSize="242,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_36" sap:VirtualizedContainerService.HintSize="904,475">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_45" sap:VirtualizedContainerService.HintSize="904,60" />
+      <sap2010:ViewStateData Id="GetRowItem_1" sap:VirtualizedContainerService.HintSize="852,64" />
+      <sap2010:ViewStateData Id="GetRowItem_5" sap:VirtualizedContainerService.HintSize="852,64" />
+      <sap2010:ViewStateData Id="GetRowItem_2" sap:VirtualizedContainerService.HintSize="800,64" />
+      <sap2010:ViewStateData Id="GetRowItem_6" sap:VirtualizedContainerService.HintSize="800,64" />
+      <sap2010:ViewStateData Id="Assign_50" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_52" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_55" sap:VirtualizedContainerService.HintSize="264,284">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_54" sap:VirtualizedContainerService.HintSize="286,408">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_51" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="553,555" />
+      <sap2010:ViewStateData Id="Sequence_51" sap:VirtualizedContainerService.HintSize="575,679">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="AddDataRow_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="800,826" />
+      <sap2010:ViewStateData Id="Sequence_49" sap:VirtualizedContainerService.HintSize="822,1158">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEachRow_2" sap:VirtualizedContainerService.HintSize="852,1305">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_44" sap:VirtualizedContainerService.HintSize="874,1637">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="904,1784" />
+      <sap2010:ViewStateData Id="ExcelWriteRange_1" sap:VirtualizedContainerService.HintSize="904,87" />
+      <sap2010:ViewStateData Id="Sequence_37" sap:VirtualizedContainerService.HintSize="926,4133">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExcelApplicationScope_3" sap:VirtualizedContainerService.HintSize="940,4242" />
+      <sap2010:ViewStateData Id="Sequence_24" sap:VirtualizedContainerService.HintSize="962,4366">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_14">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,204.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="614,636">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+            <av:Size x:Key="ShapeSize">60,75</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,204.5</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="DeleteRow_1" sap:VirtualizedContainerService.HintSize="654,756" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>
